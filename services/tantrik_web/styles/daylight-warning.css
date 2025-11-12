@@ -1,0 +1,247 @@
+/* ☀️ DAYLIGHT TAKEOVER - Full Screen White Horror */
+
+.daylight-takeover {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInTakeover 0.5s ease-out;
+}
+
+@keyframes fadeInTakeover {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Blinding white overlay with pulsing effect */
+.daylight-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 230, 1) 30%,
+    rgba(255, 255, 200, 1) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  animation: sunPulse 2s infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1.5);
+  }
+  50% { 
+    opacity: 0.95;
+    transform: scale(1.05);
+    filter: brightness(2);
+  }
+}
+
+/* Warning popup */
+.daylight-popup {
+  position: relative;
+  z-index: 100000;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 240, 0.98) 100%
+  );
+  border: 5px solid #000000;
+  border-radius: 30px;
+  padding: 50px 60px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 
+    0 0 100px rgba(255, 255, 0, 0.8),
+    0 0 200px rgba(255, 255, 255, 1),
+    inset 0 0 50px rgba(255, 255, 200, 0.5);
+  animation: popupShake 0.5s infinite, popupGlow 2s infinite;
+}
+
+@keyframes popupShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-3px, 2px) rotate(-1deg); }
+  50% { transform: translate(3px, -2px) rotate(1deg); }
+  75% { transform: translate(-2px, -3px) rotate(-0.5deg); }
+}
+
+@keyframes popupGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 100px rgba(255, 255, 0, 0.8),
+      0 0 200px rgba(255, 255, 255, 1);
+  }
+  50% {
+    box-shadow: 
+      0 0 150px rgba(255, 255, 0, 1),
+      0 0 300px rgba(255, 255, 255, 1),
+      0 0 400px rgba(255, 200, 0, 0.8);
+  }
+}
+
+/* Sun icon */
+.daylight-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: sunSpin 3s linear infinite, sunPulseIcon 1s infinite;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 0, 1));
+}
+
+@keyframes sunSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sunPulseIcon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Title */
+.daylight-title {
+  font-family: 'Creepster', cursive;
+  font-size: 2.5rem;
+  color: #000000;
+  margin: 0 0 30px 0;
+  letter-spacing: 2px;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 0, 1),
+    0 0 40px rgba(255, 200, 0, 0.8),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: titleBurn 1s infinite;
+}
+
+@keyframes titleBurn {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px rgba(255, 255, 0, 1),
+      0 0 40px rgba(255, 200, 0, 0.8);
+  }
+  50% {
+    text-shadow: 
+      0 0 40px rgba(255, 255, 0, 1),
+      0 0 80px rgba(255, 200, 0, 1),
+      0 0 120px rgba(255, 150, 0, 0.8);
+  }
+}
+
+/* Message container */
+.daylight-message {
+  margin: 30px 0;
+}
+
+.daylight-text {
+  font-family: 'Eater', cursive;
+  font-size: 1.3rem;
+  color: #000000;
+  margin: 15px 0;
+  text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+  animation: textFlicker 0.3s infinite;
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
+
+.daylight-plea {
+  font-family: 'Eater', cursive;
+  font-size: 1.1rem;
+  color: #DC2626;
+  margin: 25px 0;
+  font-style: italic;
+  text-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+  animation: pleaShake 0.5s infinite;
+}
+
+@keyframes pleaShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* Return button */
+.return-to-darkness-btn {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, #000000 0%, #1a0808 100%);
+  color: #FEE2E2;
+  border: 4px solid #DC2626;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 30px rgba(220, 38, 38, 0.8),
+    inset 0 0 20px rgba(220, 38, 38, 0.3);
+  text-shadow: 0 0 10px rgba(220, 38, 38, 1);
+  animation: buttonPulse 1.5s infinite;
+  margin: 20px 0;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 30px rgba(220, 38, 38, 0.8),
+      inset 0 0 20px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 50px rgba(220, 38, 38, 1),
+      inset 0 0 30px rgba(220, 38, 38, 0.5);
+  }
+}
+
+.return-to-darkness-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #1a0808 0%, #000000 100%);
+  box-shadow: 
+    0 0 60px rgba(220, 38, 38, 1),
+    inset 0 0 30px rgba(220, 38, 38, 0.5);
+}
+
+.return-to-darkness-btn:active {
+  transform: scale(0.98);
+}
+
+/* Footer text */
+.daylight-footer {
+  font-family: 'Eater', cursive;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .daylight-popup {
+    padding: 40px 30px;
+    max-width: 90%;
+    margin: 20px;
+  }
+  
+  .daylight-icon {
+    font-size: 4rem;
+  }
+  
+  .daylight-title {
+    font-size: 2rem;
+  }
+  
+  .daylight-text {
+    font-size: 1.1rem;
+  }
+  
+  .return-to-darkness-btn {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+  }
+}

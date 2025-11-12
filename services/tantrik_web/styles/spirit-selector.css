@@ -1,0 +1,446 @@
+/* 🎃 SPIRIT SELECTOR - No Internal Scroll, Part of Page Flow */
+
+.spirit-selector-container {
+  padding: 40px 20px 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out;
+  width: 100%;
+  /* NO overflow - flows naturally in page */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Section - Not Sticky, Flows with Page */
+.spirit-selector-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 20px 0 30px 0;
+}
+
+.spirit-selector-title {
+  font-family: 'Creepster', cursive;
+  font-size: 3rem;
+  color: #8B5CF6;
+  margin: 0 0 15px 0;
+  text-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.8),
+    0 0 40px rgba(139, 92, 246, 0.5),
+    0 0 60px rgba(139, 92, 246, 0.3);
+  animation: titlePulse 3s infinite, titleFlicker 0.15s infinite;
+  letter-spacing: 3px;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes titleFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+.spirit-selector-subtitle {
+  font-family: 'Eater', cursive;
+  font-size: 1.1rem;
+  color: #C4B5FD;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(196, 181, 253, 0.5);
+  letter-spacing: 1px;
+}
+
+/* Spirit Cards Grid */
+.spirit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Ensure 3 cards fit on larger screens */
+@media (min-width: 1024px) {
+  .spirit-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Individual Spirit Card */
+.spirit-card {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(10, 6, 18, 0.95) 0%,
+    rgba(18, 10, 31, 0.98) 50%,
+    rgba(10, 6, 18, 0.95) 100%
+  );
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.spirit-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, 
+    var(--spirit-color) 0%, 
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.spirit-card:hover::before {
+  opacity: 0.15;
+}
+
+/* Animated glow effect */
+.spirit-card-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, 
+    transparent 0%,
+    var(--spirit-color) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.4s ease;
+  animation: rotateGlow 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spirit-card:hover .spirit-card-glow {
+  opacity: 0.4;
+}
+
+.spirit-card.hovered {
+  transform: translateY(-10px) scale(1.03);
+  border-color: var(--spirit-color);
+  box-shadow: 
+    0 20px 60px rgba(var(--spirit-shadow), 0.6),
+    0 0 40px rgba(var(--spirit-shadow), 0.4),
+    inset 0 0 30px rgba(var(--spirit-shadow), 0.2);
+}
+
+.spirit-card.selected {
+  transform: scale(0.95);
+  opacity: 0.7;
+  pointer-events: none;
+  animation: summoningPulse 1s infinite;
+}
+
+@keyframes summoningPulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(var(--spirit-shadow), 0.8);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(var(--spirit-shadow), 1);
+  }
+}
+
+/* Spirit Emoji */
+.spirit-emoji {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 20px var(--spirit-color));
+  animation: floatEmoji 3s ease-in-out infinite;
+  transition: all 0.4s ease;
+}
+
+@keyframes floatEmoji {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.spirit-card:hover .spirit-emoji {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 30px var(--spirit-color));
+}
+
+/* Spirit Info */
+.spirit-info {
+  z-index: 1;
+}
+
+.spirit-name {
+  font-family: 'Creepster', cursive;
+  font-size: 1.8rem;
+  color: var(--spirit-color);
+  margin: 0 0 8px 0;
+  text-shadow: 0 0 15px rgba(var(--spirit-shadow), 0.8);
+  letter-spacing: 2px;
+}
+
+.spirit-title {
+  font-family: 'Eater', cursive;
+  font-size: 1rem;
+  color: #A78BFA;
+  margin: 0 0 12px 0;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+.spirit-description {
+  font-size: 0.9rem;
+  color: #C4B5FD;
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Backstory (appears on hover) - Covers entire card */
+.spirit-backstory {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(10, 6, 18, 0.98) 50%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  padding: 40px 30px;
+  border-radius: 18px;
+  animation: fadeInBackstory 0.4s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--spirit-color);
+  box-shadow: 
+    0 0 40px rgba(var(--spirit-shadow), 0.8),
+    inset 0 0 30px rgba(var(--spirit-shadow), 0.3);
+  z-index: 5;
+}
+
+@keyframes fadeInBackstory {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.spirit-backstory-text {
+  font-family: 'Eater', cursive;
+  font-size: 1rem;
+  color: #FCA5A5;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+  text-shadow: 
+    0 0 10px rgba(252, 165, 165, 0.7),
+    0 0 20px rgba(var(--spirit-shadow), 0.5);
+  animation: textGlow 2s infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(252, 165, 165, 0.7),
+      0 0 20px rgba(var(--spirit-shadow), 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(252, 165, 165, 1),
+      0 0 30px rgba(var(--spirit-shadow), 0.8);
+  }
+}
+
+/* Summoning Animation */
+.spirit-summoning {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 18px;
+  z-index: 10;
+}
+
+.summoning-circle {
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--spirit-color);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinSummoning 1s linear infinite;
+  box-shadow: 
+    0 0 30px var(--spirit-color),
+    inset 0 0 30px var(--spirit-color);
+}
+
+@keyframes spinSummoning {
+  to { transform: rotate(360deg); }
+}
+
+.summoning-text {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: var(--spirit-color);
+  margin-top: 20px;
+  text-shadow: 0 0 20px var(--spirit-color);
+  animation: summoningTextPulse 1s infinite;
+}
+
+@keyframes summoningTextPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Card Border Effect */
+.spirit-card-border {
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(45deg, 
+    transparent 0%,
+    var(--spirit-color) 50%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.spirit-card:hover .spirit-card-border {
+  opacity: 0.6;
+  animation: borderPulse 2s infinite;
+}
+
+@keyframes borderPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Warning Section */
+.spirit-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 38, 0.1) 0%,
+    rgba(124, 45, 18, 0.15) 100%
+  );
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  animation: warningPulse 2s infinite;
+}
+
+@keyframes warningPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+  }
+}
+
+.warning-icon {
+  font-size: 1.5rem;
+  animation: warningShake 0.5s infinite;
+}
+
+@keyframes warningShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.warning-text {
+  font-family: 'Eater', cursive;
+  font-size: 1rem;
+  color: #FCA5A5;
+  text-shadow: 0 0 10px rgba(252, 165, 165, 0.5);
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .spirit-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .spirit-selector-container {
+    padding: 30px 15px;
+  }
+  
+  .spirit-selector-title {
+    font-size: 2rem;
+  }
+  
+  .spirit-selector-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .spirit-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .spirit-card {
+    min-height: 300px;
+    padding: 25px;
+  }
+  
+  .spirit-backstory {
+    padding: 30px 20px;
+  }
+  
+  .spirit-emoji {
+    font-size: 4rem;
+  }
+  
+  .spirit-name {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,99 @@
+/* Base Layout & Reset */
+* { 
+  box-sizing: border-box; 
+}
+
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body { 
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Halloween spooky headers */
+.header-name,
+.beta-tag {
+  font-family: 'Creepster', cursive;
+  letter-spacing: 1px;
+}
+
+.shell {
+  display: flex;
+  height: 100vh;
+}
+
+/* Main Workspace */
+.main {
+  flex: 1;
+  overflow: auto;
+  background: var(--bg-primary);
+}
+
+.page {
+  padding: 24px;
+}
+
+/* Loading & Error States */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-secondary);
+  opacity: 0.95;
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.35s ease;
+}
+
+/* Chat Area Loading (Session Creation) */
+.chat-loading-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 360px;
+  background: var(--bg-secondary);
+  opacity: 0.95;
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  animation: fadeIn 0.35s ease;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--surface-primary);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-popup {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: var(--error-text);
+  padding: 14px 22px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

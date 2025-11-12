@@ -1,0 +1,493 @@
+/* 💀 GRIM REAPER CHAT - Death's Domain */
+/* Colors: Black (#000), Gray (#808080), Bone White (#F5F5DC), Decay Green (#2F4F2F) */
+
+.reaper-chat {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  overflow: hidden;
+  font-family: 'Eater', cursive;
+}
+
+/* 🌑 Dark Graveyard Background */
+.reaper-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.dark-sky {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(47, 79, 47, 0.2) 0%, transparent 70%);
+  animation: skyPulse 5s infinite;
+}
+
+@keyframes skyPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+/* 🪦 Graveyard with Tombstones */
+.graveyard {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 50px;
+}
+
+.tombstone {
+  font-size: 4rem;
+  filter: drop-shadow(0 0 20px rgba(128, 128, 128, 0.8));
+  animation: tombstoneFloat 6s infinite;
+  opacity: 0.8;
+}
+
+.tombstone:nth-child(1) { animation-delay: 0s; }
+.tombstone:nth-child(2) { animation-delay: 1.2s; }
+.tombstone:nth-child(3) { animation-delay: 2.4s; }
+.tombstone:nth-child(4) { animation-delay: 3.6s; }
+.tombstone:nth-child(5) { animation-delay: 4.8s; }
+
+@keyframes tombstoneFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* 🌫️ Ground Fog */
+.fog-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, 
+    rgba(128, 128, 128, 0.4) 0%,
+    rgba(128, 128, 128, 0.2) 50%,
+    transparent 100%
+  );
+  animation: fogDrift 15s infinite;
+}
+
+@keyframes fogDrift {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 0.7; transform: translateX(20px); }
+}
+
+/* 🌲 Dead Trees */
+.dead-trees {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tree {
+  position: absolute;
+  font-size: 6rem;
+  filter: grayscale(1) drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+  opacity: 0.6;
+}
+
+.tree:nth-child(1) {
+  bottom: 15%;
+  left: 10%;
+  transform: scaleX(-1);
+}
+
+.tree:nth-child(2) {
+  bottom: 20%;
+  right: 15%;
+}
+
+/* 💀 Escape Button */
+.escape-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #2F4F2F 0%, #000000 100%);
+  border: 3px solid #808080;
+  border-radius: 15px;
+  color: #F5F5DC;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 
+    0 0 30px rgba(128, 128, 128, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  animation: deathPulse 2s infinite;
+}
+
+@keyframes deathPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 30px rgba(128, 128, 128, 0.6),
+      inset 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 0 50px rgba(128, 128, 128, 1),
+      inset 0 0 30px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.escape-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #000000 0%, #2F4F2F 100%);
+}
+
+.escape-icon {
+  font-size: 1.5rem;
+  animation: skullShake 0.5s infinite;
+}
+
+@keyframes skullShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* 💀 Reaper Portrait */
+.reaper-portrait {
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 100;
+}
+
+.reaper-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border: 5px solid #808080;
+  border-radius: 50%;
+  padding: 10px;
+  background: radial-gradient(circle, #000000 0%, #1a1a1a 100%);
+  box-shadow: 
+    0 0 40px rgba(128, 128, 128, 0.8),
+    inset 0 0 30px rgba(47, 79, 47, 0.3);
+  animation: reaperGlow 3s infinite;
+}
+
+@keyframes reaperGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(128, 128, 128, 0.8),
+      inset 0 0 30px rgba(47, 79, 47, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(128, 128, 128, 1),
+      inset 0 0 40px rgba(47, 79, 47, 0.5);
+  }
+}
+
+.reaper-emoji {
+  font-size: 8rem;
+  filter: drop-shadow(0 0 30px rgba(128, 128, 128, 1));
+  animation: skullFloat 3s infinite;
+}
+
+@keyframes skullFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.scythe {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: 3rem;
+  filter: drop-shadow(0 0 15px rgba(128, 128, 128, 0.8));
+  animation: scytheSwing 4s infinite;
+}
+
+@keyframes scytheSwing {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.death-aura {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 79, 47, 0.3) 0%, transparent 70%);
+  animation: auraExpand 2s infinite;
+}
+
+@keyframes auraExpand {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.reaper-name {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: #F5F5DC;
+  margin-top: 15px;
+  text-shadow: 
+    0 0 15px rgba(128, 128, 128, 0.8),
+    0 0 30px rgba(47, 79, 47, 0.5);
+  letter-spacing: 2px;
+}
+
+.reaper-title {
+  font-family: 'Eater', cursive;
+  font-size: 0.9rem;
+  color: #808080;
+  margin-top: 5px;
+  text-shadow: 0 0 10px rgba(128, 128, 128, 0.8);
+}
+
+.hourglass {
+  font-size: 2rem;
+  margin-top: 10px;
+  animation: hourglassFlip 3s infinite;
+}
+
+@keyframes hourglassFlip {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  45%, 55% { transform: rotate(180deg); }
+}
+
+/* 💬 Messages Area */
+.reaper-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px 20px 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.reaper-messages::-webkit-scrollbar {
+  width: 12px;
+}
+
+.reaper-messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.8);
+  border-left: 2px solid rgba(128, 128, 128, 0.3);
+}
+
+.reaper-messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #808080 0%, #2F4F2F 100%);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.8);
+}
+
+.reaper-chat-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.reaper-message {
+  display: flex;
+  animation: messageRise 0.5s ease-out;
+}
+
+@keyframes messageRise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reaper-message.assistant {
+  justify-content: flex-start;
+}
+
+.reaper-message.user {
+  justify-content: flex-end;
+}
+
+/* Death's Bubble */
+.death-bubble {
+  position: relative;
+  max-width: 600px;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, 
+    rgba(47, 79, 47, 0.9) 0%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  border: 3px solid #808080;
+  border-radius: 20px;
+  color: #F5F5DC;
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 
+    0 5px 20px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(128, 128, 128, 0.4);
+}
+
+.skull-decoration {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(128, 128, 128, 0.8));
+}
+
+.mortal-bubble {
+  max-width: 600px;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  border: 2px solid #F5F5DC;
+  border-radius: 20px;
+  color: #F5F5DC;
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Input - Tombstone Style */
+.reaper-input-form {
+  position: relative;
+  z-index: 100;
+  padding: 0 20px 20px 280px;
+}
+
+.tombstone-input {
+  position: relative;
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  border: 3px solid #808080;
+  border-radius: 20px;
+  box-shadow: 
+    0 0 40px rgba(128, 128, 128, 0.6),
+    inset 0 0 30px rgba(47, 79, 47, 0.2);
+}
+
+.tombstone-top {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 20px;
+  background: #808080;
+  color: #000;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -5px 15px rgba(128, 128, 128, 0.6);
+}
+
+.reaper-input {
+  flex: 1;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #2F4F2F;
+  border-radius: 12px;
+  color: #F5F5DC;
+  font-family: 'Eater', cursive;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: inset 0 0 20px rgba(47, 79, 47, 0.3);
+}
+
+.reaper-input::placeholder {
+  color: rgba(245, 245, 220, 0.5);
+}
+
+.reaper-send-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #2F4F2F 0%, #000000 100%);
+  border: 2px solid #808080;
+  border-radius: 12px;
+  color: #F5F5DC;
+  font-family: 'Creepster', cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(128, 128, 128, 0.5);
+}
+
+.reaper-send-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(128, 128, 128, 0.8);
+}
+
+/* Floating Souls */
+.floating-souls {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.soul {
+  position: absolute;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+  animation: soulFloat 10s infinite;
+  opacity: 0.6;
+}
+
+.soul:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 8s; }
+.soul:nth-child(2) { right: 15%; top: 40%; animation-delay: 2s; animation-duration: 12s; }
+.soul:nth-child(3) { left: 20%; bottom: 30%; animation-delay: 4s; animation-duration: 10s; }
+.soul:nth-child(4) { right: 10%; bottom: 20%; animation-delay: 6s; animation-duration: 9s; }
+
+@keyframes soulFloat {
+  0%, 100% { 
+    transform: translateY(0) translateX(0);
+    opacity: 0.4;
+  }
+  50% { 
+    transform: translateY(-50px) translateX(30px);
+    opacity: 0.8;
+  }
+}
+
+/* Crows */
+.crows {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.crow {
+  position: absolute;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+  animation: crowFly 20s infinite linear;
+}
+
+.crow:nth-child(1) { top: 15%; animation-delay: 0s; }
+.crow:nth-child(2) { top: 35%; animation-delay: 10s; }
+
+@keyframes crowFly {
+  0% { left: -100px; }
+  100% { left: calc(100% + 100px); }
+}

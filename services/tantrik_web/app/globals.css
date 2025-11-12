@@ -1,0 +1,30 @@
+/* Tantrik Web - Main Stylesheet */
+/* Gateway to the Spirit Realm - Halloween Edition */
+
+/* Import spooky Halloween fonts */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Eater&family=Butcherman&display=swap');
+
+/* Theme System - Must be first */
+@import '../styles/themes.css';
+
+/* Base styles & reset */
+@import '../styles/base.css';
+
+/* Component styles */
+@import '../styles/sidebar.css';
+@import '../styles/chat.css';
+@import '../styles/messages.css';
+@import '../styles/input.css';
+@import '../styles/modals.css';
+@import '../styles/spirit-selector.css';
+@import '../styles/daylight-warning.css';
+@import '../styles/tantrik-loading.css';
+@import '../styles/dracula-chat.css';
+@import '../styles/reaper-chat.css';
+@import '../styles/bloody-mary-chat.css';
+
+/* Utilities */
+@import '../styles/animations.css';
+
+/* Responsive breakpoints */
+@import '../styles/responsive.css';

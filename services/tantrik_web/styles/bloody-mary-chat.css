@@ -1,0 +1,561 @@
+/* 👻 BLOODY MARY CHAT - Mirror Realm Horror */
+/* Colors: Dark Brown (#3E2723), Blood Red (#B71C1C), Mirror Silver (#C0C0C0), Pale (#FFF8DC) */
+
+.mary-chat {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #1a0f0a 0%, #3E2723 50%, #1a0f0a 100%);
+  overflow: hidden;
+  font-family: 'Eater', cursive;
+}
+
+/* 🪞 Bathroom Mirror Background */
+.mary-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.bathroom-wall {
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(90deg, #3E2723 0px, #3E2723 10px, #4E342E 10px, #4E342E 20px),
+    repeating-linear-gradient(0deg, #3E2723 0px, #3E2723 10px, #4E342E 10px, #4E342E 20px);
+  opacity: 0.3;
+}
+
+/* Cracked Mirror Effect */
+.cracked-mirrors {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mirror-crack {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent 0%, #C0C0C0 50%, transparent 100%);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
+  animation: crackGlow 3s infinite;
+}
+
+.crack-1 {
+  top: 10%;
+  left: 30%;
+  height: 40%;
+  transform: rotate(45deg);
+}
+
+.crack-2 {
+  top: 20%;
+  right: 25%;
+  height: 50%;
+  transform: rotate(-30deg);
+  animation-delay: 1s;
+}
+
+.crack-3 {
+  bottom: 15%;
+  left: 40%;
+  height: 35%;
+  transform: rotate(60deg);
+  animation-delay: 2s;
+}
+
+@keyframes crackGlow {
+  0%, 100% { opacity: 0.3; box-shadow: 0 0 10px rgba(192, 192, 192, 0.5); }
+  50% { opacity: 0.8; box-shadow: 0 0 20px rgba(192, 192, 192, 1); }
+}
+
+/* Blood Writing */
+.blood-writing {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Creepster', cursive;
+  font-size: 2rem;
+  color: #B71C1C;
+  text-shadow: 
+    0 0 20px rgba(183, 28, 28, 0.8),
+    0 5px 10px rgba(0, 0, 0, 0.5);
+  animation: bloodDrip 4s infinite, textFlicker 0.3s infinite;
+  letter-spacing: 3px;
+}
+
+@keyframes bloodDrip {
+  0%, 90%, 100% { transform: translateX(-50%) translateY(0); }
+  95% { transform: translateX(-50%) translateY(5px); }
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Flickering Light */
+.flickering-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 248, 220, 0.1) 0%, transparent 60%);
+  animation: lightFlicker 0.5s infinite;
+}
+
+@keyframes lightFlicker {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.5; }
+}
+
+/* 🏃‍♀️ Flee Button */
+.flee-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #B71C1C 0%, #3E2723 100%);
+  border: 3px solid #C0C0C0;
+  border-radius: 15px;
+  color: #FFF8DC;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 
+    0 0 30px rgba(192, 192, 192, 0.6),
+    inset 0 0 20px rgba(183, 28, 28, 0.3);
+  transition: all 0.3s ease;
+  animation: mirrorPulse 2s infinite;
+}
+
+@keyframes mirrorPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 30px rgba(192, 192, 192, 0.6),
+      inset 0 0 20px rgba(183, 28, 28, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 50px rgba(192, 192, 192, 1),
+      inset 0 0 30px rgba(183, 28, 28, 0.5);
+  }
+}
+
+.flee-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #3E2723 0%, #B71C1C 100%);
+}
+
+/* 👻 Mary Portrait */
+.mary-portrait {
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 100;
+}
+
+.mirror-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border: 5px solid #C0C0C0;
+  border-radius: 20px;
+  padding: 10px;
+  background: linear-gradient(135deg, #1a0f0a 0%, #3E2723 100%);
+  box-shadow: 
+    0 0 40px rgba(192, 192, 192, 0.8),
+    inset 0 0 30px rgba(183, 28, 28, 0.3);
+  animation: mirrorGlow 3s infinite;
+}
+
+@keyframes mirrorGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(192, 192, 192, 0.8),
+      inset 0 0 30px rgba(183, 28, 28, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(192, 192, 192, 1),
+      inset 0 0 40px rgba(183, 28, 28, 0.5);
+  }
+}
+
+.mary-emoji {
+  font-size: 8rem;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+  animation: ghostFloat 3s infinite;
+}
+
+@keyframes ghostFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-15px); opacity: 1; }
+}
+
+.blood-tears {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: tearsDrip 2s infinite;
+}
+
+@keyframes tearsDrip {
+  0%, 90%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  95% { transform: translateX(-50%) translateY(10px); opacity: 0.5; }
+}
+
+.mirror-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(192, 192, 192, 0.3) 0%, transparent 70%);
+  animation: glowExpand 2s infinite;
+}
+
+.hand-prints {
+  position: absolute;
+  inset: 0;
+}
+
+.hand {
+  position: absolute;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(183, 28, 28, 0.8));
+  opacity: 0.6;
+  animation: handAppear 5s infinite;
+}
+
+.hand:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  transform: rotate(-20deg);
+}
+
+.hand:nth-child(2) {
+  bottom: 20%;
+  right: 10%;
+  transform: rotate(20deg);
+  animation-delay: 2.5s;
+}
+
+@keyframes handAppear {
+  0%, 80%, 100% { opacity: 0; }
+  85%, 95% { opacity: 0.8; }
+}
+
+.mary-name {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: #B71C1C;
+  margin-top: 15px;
+  text-shadow: 
+    0 0 15px rgba(183, 28, 28, 0.8),
+    0 0 30px rgba(192, 192, 192, 0.5);
+  letter-spacing: 2px;
+}
+
+.mary-title {
+  font-family: 'Eater', cursive;
+  font-size: 0.9rem;
+  color: #C0C0C0;
+  margin-top: 5px;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
+}
+
+.candles {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  animation: candlesFlicker 1s infinite;
+}
+
+@keyframes candlesFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Messages */
+.mary-chat-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.mary-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px 20px 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.mary-messages::-webkit-scrollbar {
+  width: 12px;
+}
+
+.mary-messages::-webkit-scrollbar-track {
+  background: rgba(26, 15, 10, 0.8);
+  border-left: 2px solid rgba(192, 192, 192, 0.3);
+}
+
+.mary-messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #B71C1C 0%, #3E2723 100%);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(183, 28, 28, 0.8);
+}
+
+.mary-message {
+  display: flex;
+  animation: messageAppear 0.5s ease-out;
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mary-message.assistant {
+  justify-content: flex-start;
+}
+
+.mary-message.user {
+  justify-content: flex-end;
+}
+
+/* Ghost Bubble */
+.ghost-bubble {
+  position: relative;
+  max-width: 600px;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, 
+    rgba(183, 28, 28, 0.9) 0%,
+    rgba(62, 39, 35, 0.95) 100%
+  );
+  border: 3px solid #C0C0C0;
+  border-radius: 20px;
+  color: #FFF8DC;
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 
+    0 5px 20px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(192, 192, 192, 0.4);
+}
+
+.mirror-shard {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.8));
+  animation: shardGlint 2s infinite;
+}
+
+@keyframes shardGlint {
+  0%, 90%, 100% { opacity: 0.8; }
+  95% { opacity: 1; transform: scale(1.1); }
+}
+
+.blood-drip-mary {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 8px;
+  height: 15px;
+  background: linear-gradient(to bottom, #B71C1C, #7F0000);
+  border-radius: 0 0 50% 50%;
+  animation: maryDrip 3s infinite;
+}
+
+@keyframes maryDrip {
+  0%, 90%, 100% { 
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% { 
+    opacity: 1;
+    transform: translateY(5px);
+  }
+}
+
+.victim-bubble {
+  max-width: 600px;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  border: 2px solid #FFF8DC;
+  border-radius: 20px;
+  color: #FFF8DC;
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Input - Mirror Frame */
+.mary-input-form {
+  position: relative;
+  z-index: 100;
+  padding: 0 20px 20px 280px;
+}
+
+.mirror-input {
+  position: relative;
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #3E2723 0%, #1a0f0a 100%);
+  border: 3px solid #C0C0C0;
+  border-radius: 20px;
+  box-shadow: 
+    0 0 40px rgba(192, 192, 192, 0.6),
+    inset 0 0 30px rgba(183, 28, 28, 0.2);
+}
+
+.mirror-border {
+  position: absolute;
+  inset: -3px;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #C0C0C0, #B71C1C, #C0C0C0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderShine 3s infinite;
+}
+
+@keyframes borderShine {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.mary-input {
+  flex: 1;
+  padding: 15px 20px;
+  background: rgba(26, 15, 10, 0.9);
+  border: 2px solid #B71C1C;
+  border-radius: 12px;
+  color: #FFF8DC;
+  font-family: 'Eater', cursive;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: inset 0 0 20px rgba(183, 28, 28, 0.3);
+}
+
+.mary-input::placeholder {
+  color: rgba(255, 248, 220, 0.5);
+}
+
+.mary-send-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #B71C1C 0%, #3E2723 100%);
+  border: 2px solid #C0C0C0;
+  border-radius: 12px;
+  color: #FFF8DC;
+  font-family: 'Creepster', cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(192, 192, 192, 0.5);
+}
+
+.mary-send-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(192, 192, 192, 0.8);
+}
+
+/* Floating Candles */
+.floating-candles-mary {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.candle-mary {
+  position: absolute;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 15px rgba(255, 200, 100, 0.8));
+  animation: candleFloat 5s infinite;
+}
+
+.candle-mary:nth-child(1) { top: 15%; left: 15%; animation-delay: 0s; }
+.candle-mary:nth-child(2) { top: 25%; right: 20%; animation-delay: 1.25s; }
+.candle-mary:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 2.5s; }
+.candle-mary:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 3.75s; }
+
+@keyframes candleFloat {
+  0%, 100% { 
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+}
+
+/* Blood from Ceiling */
+.ceiling-blood {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.blood-drop-ceiling {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  background: linear-gradient(to bottom, #B71C1C, #7F0000);
+  border-radius: 0 0 50% 50%;
+  animation: ceilingDrip 6s infinite;
+  opacity: 0.8;
+}
+
+.blood-drop-ceiling:nth-child(1) { left: 30%; animation-delay: 0s; }
+.blood-drop-ceiling:nth-child(2) { left: 55%; animation-delay: 2s; }
+.blood-drop-ceiling:nth-child(3) { left: 75%; animation-delay: 4s; }
+
+@keyframes ceilingDrip {
+  0% { 
+    top: -20px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% { 
+    top: 100vh;
+    opacity: 0;
+  }
+}

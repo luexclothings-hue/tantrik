@@ -1,0 +1,166 @@
+/* Input Bar - Sticky at Bottom */
+.input-bar {
+  padding: 14px;
+  border-top: 2px solid var(--border-primary);
+  display: flex;
+  gap: 12px;
+  background: var(--bg-tertiary);
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+}
+
+.input-bar input {
+  flex: 1;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: 0.25s;
+}
+
+.input-bar input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.input-bar input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--glow-primary);
+}
+
+.input-bar input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Send Button */
+.input-bar button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: var(--surface-hover);
+  border: 1px solid var(--border-focus);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: 500;
+}
+
+.input-bar button:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.input-bar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Send Button Spinner */
+.send-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--surface-primary);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin .9s linear infinite;
+}
+
+/* 🎃 HORROR INPUT STYLING */
+
+.input-bar {
+  animation: slideUpInput 0.6s ease-out;
+  box-shadow: 
+    0 -10px 30px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(139, 92, 246, 0.1);
+}
+
+@keyframes slideUpInput {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.input-bar input {
+  font-family: 'Eater', cursive;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.1) 0%,
+    rgba(10, 6, 18, 0.8) 100%
+  );
+  box-shadow: 
+    inset 0 0 20px rgba(139, 92, 246, 0.1),
+    0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.input-bar input:focus {
+  border-color: #8B5CF6;
+  box-shadow: 
+    0 0 0 3px rgba(139, 92, 246, 0.3),
+    0 0 20px rgba(139, 92, 246, 0.4),
+    inset 0 0 20px rgba(139, 92, 246, 0.15);
+  animation: inputPulse 2s infinite;
+}
+
+@keyframes inputPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 3px rgba(139, 92, 246, 0.3),
+      0 0 20px rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 3px rgba(139, 92, 246, 0.5),
+      0 0 30px rgba(139, 92, 246, 0.6);
+  }
+}
+
+.input-bar input::placeholder {
+  font-family: 'Eater', cursive;
+  color: #A78BFA;
+  text-shadow: 0 0 5px rgba(167, 139, 250, 0.3);
+}
+
+.input-bar button {
+  font-family: 'Creepster', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  border: 2px solid #A78BFA;
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.5),
+    inset 0 0 10px rgba(167, 139, 250, 0.2);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: buttonGlow 2s infinite;
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 15px rgba(139, 92, 246, 0.5),
+      inset 0 0 10px rgba(167, 139, 250, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(139, 92, 246, 0.8),
+      inset 0 0 15px rgba(167, 139, 250, 0.3);
+  }
+}
+
+.input-bar button:hover {
+  background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 5px 30px rgba(139, 92, 246, 0.8),
+    inset 0 0 20px rgba(167, 139, 250, 0.4);
+}

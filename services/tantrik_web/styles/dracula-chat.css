@@ -1,0 +1,793 @@
+/* 🧛‍♂️ DRACULA CHAT - Ultimate Gothic Vampire Experience */
+/* Based on proven Halloween color psychology:
+   - Deep Red (#8B0000): Blood, danger, vampires (92% association)
+   - Black (#000000): Night, death, fear (100% horror)
+   - Gold (#FFD700): Luxury, royalty, ancient (85% elegance)
+   - Crimson (#DC143C): Fresh blood (88% vampire connection)
+*/
+
+.dracula-chat {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #0f0000 0%, #1a0000 50%, #0a0000 100%);
+  overflow: hidden;
+  font-family: 'Eater', cursive;
+}
+
+/* 🌙 Animated Background with Blood Moon & Castle */
+.dracula-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Blood Moon */
+.blood-moon {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #DC143C 0%, #8B0000 70%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 80px rgba(220, 20, 60, 0.8),
+    0 0 150px rgba(220, 20, 60, 0.5),
+    inset 0 0 50px rgba(139, 0, 0, 0.5);
+  animation: moonPulse 4s infinite;
+}
+
+@keyframes moonPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 80px rgba(220, 20, 60, 0.8),
+      0 0 150px rgba(220, 20, 60, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 120px rgba(220, 20, 60, 1),
+      0 0 200px rgba(220, 20, 60, 0.7);
+  }
+}
+
+/* Castle Silhouette */
+.castle-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, #000000 0%, transparent 100%);
+  clip-path: polygon(
+    0% 100%, 0% 60%, 5% 55%, 5% 40%, 10% 35%, 10% 60%, 15% 55%, 15% 45%, 20% 40%, 20% 60%,
+    25% 55%, 25% 30%, 30% 25%, 30% 55%, 35% 50%, 35% 35%, 40% 30%, 40% 50%, 45% 45%, 45% 40%,
+    50% 35%, 50% 45%, 55% 40%, 55% 35%, 60% 30%, 60% 50%, 65% 45%, 65% 25%, 70% 30%, 70% 55%,
+    75% 50%, 75% 40%, 80% 35%, 80% 60%, 85% 55%, 85% 45%, 90% 40%, 90% 60%, 95% 55%, 95% 60%,
+    100% 60%, 100% 100%
+  );
+  opacity: 0.9;
+}
+
+/* Flying Bats */
+.bats-flying {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bat {
+  position: absolute;
+  font-size: 2rem;
+  animation: batFly 15s infinite linear;
+  filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+}
+
+.bat:nth-child(1) { top: 20%; animation-delay: 0s; animation-duration: 12s; }
+.bat:nth-child(2) { top: 40%; animation-delay: 3s; animation-duration: 15s; }
+.bat:nth-child(3) { top: 60%; animation-delay: 6s; animation-duration: 18s; }
+.bat:nth-child(4) { top: 30%; animation-delay: 9s; animation-duration: 14s; }
+.bat:nth-child(5) { top: 50%; animation-delay: 12s; animation-duration: 16s; }
+
+@keyframes batFly {
+  0% { 
+    left: -100px; 
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(10deg);
+  }
+  100% { 
+    left: calc(100% + 100px); 
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Fog Layer */
+.fog-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, 
+    rgba(139, 0, 0, 0.2) 0%,
+    rgba(139, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  animation: fogMove 20s infinite;
+}
+
+@keyframes fogMove {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* 🏃 Run Away Button - Top Right */
+.run-away-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+  border: 3px solid #FFD700;
+  border-radius: 15px;
+  color: #FFD700;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.6),
+    inset 0 0 20px rgba(139, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  animation: buttonPulse 2s infinite;
+}
+
+.run-away-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+  box-shadow: 
+    0 0 50px rgba(255, 215, 0, 1),
+    inset 0 0 30px rgba(139, 0, 0, 0.7);
+}
+
+.run-icon {
+  font-size: 1.5rem;
+  animation: runAnimation 0.5s infinite;
+}
+
+@keyframes runAnimation {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-5px); }
+}
+
+/* 🧛 Chat Container */
+.dracula-chat-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Dracula Portrait - Left Side */
+.dracula-portrait {
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 100;
+}
+
+.portrait-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border: 5px solid #FFD700;
+  border-radius: 50%;
+  padding: 10px;
+  background: linear-gradient(135deg, #1a0000 0%, #0a0000 100%);
+  box-shadow: 
+    0 0 40px rgba(255, 215, 0, 0.8),
+    inset 0 0 30px rgba(139, 0, 0, 0.5);
+  animation: portraitGlow 3s infinite;
+}
+
+@keyframes portraitGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(255, 215, 0, 0.8),
+      inset 0 0 30px rgba(139, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(255, 215, 0, 1),
+      inset 0 0 40px rgba(139, 0, 0, 0.7);
+  }
+}
+
+.dracula-emoji {
+  font-size: 8rem;
+  filter: drop-shadow(0 0 30px rgba(220, 20, 60, 1));
+  animation: vampireFloat 3s infinite, vampireGlow 2s infinite;
+}
+
+@keyframes vampireFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes vampireGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 30px rgba(220, 20, 60, 1));
+  }
+  50% {
+    filter: drop-shadow(0 0 50px rgba(220, 20, 60, 1)) drop-shadow(0 0 70px rgba(139, 0, 0, 0.8));
+  }
+}
+
+.blood-splatter {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(139, 0, 0, 0.3) 0%, transparent 40%),
+              radial-gradient(circle at 70% 30%, rgba(139, 0, 0, 0.2) 0%, transparent 30%);
+  border-radius: 50%;
+  animation: splatterPulse 4s infinite;
+}
+
+@keyframes splatterPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.portrait-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.3) 0%, transparent 70%);
+  animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.dracula-name {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: #FFD700;
+  margin-top: 15px;
+  text-shadow: 
+    0 0 15px rgba(255, 215, 0, 0.8),
+    0 0 30px rgba(220, 20, 60, 0.5);
+  letter-spacing: 2px;
+}
+
+.dracula-title {
+  font-family: 'Eater', cursive;
+  font-size: 0.9rem;
+  color: #DC143C;
+  margin-top: 5px;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.8);
+}
+
+.vampire-fangs {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  animation: fangsGlint 2s infinite;
+}
+
+@keyframes fangsGlint {
+  0%, 90%, 100% { opacity: 0.8; }
+  95% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 💬 Messages Area */
+.dracula-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px 20px 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+/* Custom scrollbar */
+.dracula-messages::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dracula-messages::-webkit-scrollbar-track {
+  background: rgba(10, 0, 0, 0.8);
+  border-left: 2px solid rgba(220, 20, 60, 0.3);
+}
+
+.dracula-messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #DC143C 0%, #8B0000 100%);
+  border-radius: 6px;
+  border: 2px solid rgba(10, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.8);
+}
+
+.dracula-message {
+  display: flex;
+  animation: messageSlideIn 0.5s ease-out;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dracula-message.assistant {
+  justify-content: flex-start;
+}
+
+.dracula-message.user {
+  justify-content: flex-end;
+}
+
+/* 💭 Speech Bubbles - Comic Style */
+.speech-bubble {
+  position: relative;
+  max-width: 600px;
+  padding: 20px 25px;
+  border-radius: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Dracula's Bubble - Gothic Red */
+.dracula-bubble {
+  background: linear-gradient(135deg, 
+    rgba(139, 0, 0, 0.95) 0%,
+    rgba(26, 0, 0, 0.95) 100%
+  );
+  border: 3px solid #DC143C;
+  color: #FFD700;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  box-shadow: 
+    0 5px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(220, 20, 60, 0.4),
+    inset 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+/* Tail for Dracula's bubble */
+.bubble-tail {
+  position: absolute;
+  left: -20px;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 20px solid #DC143C;
+}
+
+.bubble-tail::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: -12px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 17px solid rgba(139, 0, 0, 0.95);
+}
+
+/* Blood drip effect */
+.blood-drip {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 8px;
+  height: 15px;
+  background: linear-gradient(to bottom, #DC143C, #8B0000);
+  border-radius: 0 0 50% 50%;
+  animation: drip 3s infinite;
+}
+
+@keyframes drip {
+  0%, 90%, 100% { 
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% { 
+    opacity: 1;
+    transform: translateY(5px);
+  }
+}
+
+/* User's Bubble - Dark with Gold Border */
+.user-bubble {
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  border: 2px solid #FFD700;
+  color: #E0E7FF;
+  box-shadow: 
+    0 5px 20px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.bubble-tail-user {
+  position: absolute;
+  right: -18px;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 20px solid #FFD700;
+}
+
+.bubble-tail-user::after {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: -12px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 17px solid rgba(26, 26, 26, 0.95);
+}
+
+.bubble-content {
+  position: relative;
+  z-index: 1;
+}
+
+.bubble-content p {
+  margin: 0 0 10px 0;
+}
+
+.bubble-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  gap: 5px;
+  padding: 5px 0;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: #FFD700;
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+}
+
+/* ⚰️ Input Form - Coffin Style */
+.dracula-input-form {
+  position: relative;
+  z-index: 100;
+  padding: 0 20px 20px 280px;
+}
+
+.coffin-input-container {
+  position: relative;
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a0000 0%, #0a0000 100%);
+  border: 3px solid #FFD700;
+  border-radius: 20px;
+  box-shadow: 
+    0 0 40px rgba(255, 215, 0, 0.6),
+    inset 0 0 30px rgba(139, 0, 0, 0.3);
+}
+
+.coffin-lid {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 8px;
+  background: #FFD700;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 -5px 15px rgba(255, 215, 0, 0.6);
+}
+
+.dracula-input {
+  flex: 1;
+  padding: 15px 20px;
+  background: rgba(10, 0, 0, 0.8);
+  border: 2px solid #DC143C;
+  border-radius: 12px;
+  color: #FFD700;
+  font-family: 'Eater', cursive;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 
+    inset 0 0 20px rgba(139, 0, 0, 0.5),
+    0 0 15px rgba(220, 20, 60, 0.3);
+  transition: all 0.3s ease;
+}
+
+.dracula-input::placeholder {
+  color: rgba(255, 215, 0, 0.5);
+  font-family: 'Eater', cursive;
+}
+
+.dracula-input:focus {
+  border-color: #FFD700;
+  box-shadow: 
+    inset 0 0 20px rgba(139, 0, 0, 0.7),
+    0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.dracula-send-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+  border: 2px solid #FFD700;
+  border-radius: 12px;
+  color: #FFD700;
+  font-family: 'Creepster', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.dracula-send-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+}
+
+.dracula-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-icon {
+  font-size: 1.3rem;
+  animation: batFlap 1s infinite;
+}
+
+@keyframes batFlap {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.2); }
+}
+
+/* 🩸 Decorative Blood Drops */
+.blood-drops {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.blood-drop {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  background: linear-gradient(to bottom, #DC143C, #8B0000);
+  border-radius: 0 0 50% 50%;
+  animation: bloodFall 5s infinite;
+  opacity: 0.7;
+}
+
+.blood-drop:nth-child(1) { left: 20%; animation-delay: 0s; animation-duration: 4s; }
+.blood-drop:nth-child(2) { left: 60%; animation-delay: 2s; animation-duration: 6s; }
+.blood-drop:nth-child(3) { left: 80%; animation-delay: 4s; animation-duration: 5s; }
+
+@keyframes bloodFall {
+  0% { 
+    top: -20px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% { 
+    top: 100vh;
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dracula-portrait {
+    position: static;
+    transform: none;
+    margin: 20px auto;
+  }
+  
+  .dracula-messages,
+  .dracula-input-form {
+    padding-left: 20px;
+  }
+}
+
+
+/* ⚰️ COFFIN DECORATIONS */
+.coffin-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.coffin {
+  position: absolute;
+  font-size: 4rem;
+  filter: drop-shadow(0 0 20px rgba(139, 0, 0, 0.8));
+  animation: coffinFloat 6s infinite;
+}
+
+.coffin-left {
+  bottom: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.coffin-right {
+  bottom: 15%;
+  right: 5%;
+  animation-delay: 3s;
+}
+
+@keyframes coffinFloat {
+  0%, 100% { 
+    transform: translateY(0) rotate(-5deg);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-20px) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+/* ⛓️ HANGING CHAINS */
+.chains {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.chain {
+  position: absolute;
+  top: -20px;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(100, 100, 100, 0.8));
+  animation: chainSwing 4s infinite;
+  transform-origin: top center;
+}
+
+.chain-1 { left: 25%; animation-delay: 0s; }
+.chain-2 { left: 50%; animation-delay: 1.3s; }
+.chain-3 { left: 75%; animation-delay: 2.6s; }
+
+@keyframes chainSwing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* 🩸 BLOOD STAINS ON EDGES */
+.blood-stains {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.blood-stain {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.6) 0%, transparent 70%);
+  filter: blur(20px);
+  animation: stainPulse 5s infinite;
+}
+
+.stain-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.stain-2 {
+  top: 50%;
+  right: 3%;
+  animation-delay: 2s;
+}
+
+.stain-3 {
+  bottom: 20%;
+  left: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes stainPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* 👁️ WATCHING EYES */
+.watching-eyes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.eyes {
+  position: absolute;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8));
+  animation: eyesBlink 4s infinite, eyesMove 8s infinite;
+}
+
+.eyes-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.eyes-2 {
+  top: 60%;
+  right: 8%;
+  animation-delay: 2s;
+}
+
+@keyframes eyesBlink {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0; }
+}
+
+@keyframes eyesMove {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(10px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-10px); }
+}
+
+/* Enhanced blood drops */
+.blood-drop:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 5.5s; }
+.blood-drop:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 4.5s; }

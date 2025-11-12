@@ -1,0 +1,402 @@
+/* 🎃 HALLOWEEN SIDEBAR - Ultimate Spooky Design */
+.sidebar {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, 
+    rgba(10, 6, 18, 0.98) 0%,
+    rgba(18, 10, 31, 0.98) 50%,
+    rgba(10, 6, 18, 0.98) 100%
+  );
+  border-right: 2px solid rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(20px);
+  transition: transform 0.3s ease, width 0.3s ease;
+  box-shadow: 
+    2px 0 30px rgba(139, 92, 246, 0.2),
+    inset -1px 0 20px rgba(139, 92, 246, 0.1);
+  position: relative;
+}
+
+/* Spooky border glow animation */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    #8B5CF6 50%,
+    transparent 100%
+  );
+  animation: borderGlowMove 3s infinite;
+}
+
+@keyframes borderGlowMove {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* 🎃 Sidebar Header - Haunted Title */
+.sidebar-header {
+  padding: 25px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.1) 0%,
+    transparent 100%
+  );
+  box-shadow: 0 2px 20px rgba(139, 92, 246, 0.2);
+  position: relative;
+}
+
+/* Floating candles decoration */
+.sidebar-header::before {
+  content: '🕯️';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  animation: candleFlicker 2s infinite;
+  opacity: 0.7;
+}
+
+.sidebar-header::after {
+  content: '🕯️';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  animation: candleFlicker 2s infinite 1s;
+  opacity: 0.7;
+}
+
+@keyframes candleFlicker {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  flex: 1;
+  font-family: 'Creepster', cursive;
+  letter-spacing: 3px;
+  color: #8B5CF6;
+  text-shadow: 
+    0 0 15px rgba(139, 92, 246, 0.8),
+    0 0 30px rgba(139, 92, 246, 0.5),
+    0 0 45px rgba(139, 92, 246, 0.3);
+  animation: titlePulseGlow 3s infinite;
+  text-align: center;
+}
+
+@keyframes titlePulseGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 15px rgba(139, 92, 246, 0.8),
+      0 0 30px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 25px rgba(139, 92, 246, 1),
+      0 0 50px rgba(139, 92, 246, 0.7),
+      0 0 75px rgba(139, 92, 246, 0.4);
+  }
+}
+
+.sidebar-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 👻 New Chat Button - Summon New Spirit */
+.new-chat-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-family: 'Creepster', cursive;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  border: 2px solid #A78BFA;
+  color: #FFF;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 
+    0 0 15px rgba(139, 92, 246, 0.5),
+    inset 0 0 10px rgba(167, 139, 250, 0.2);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.new-chat-btn::before {
+  content: '✨';
+  position: absolute;
+  left: 8px;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.new-chat-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 5px 25px rgba(139, 92, 246, 0.8),
+    inset 0 0 15px rgba(167, 139, 250, 0.4);
+}
+
+.new-chat-btn:active:not(:disabled) {
+  transform: translateY(0) scale(1);
+}
+
+.new-chat-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+/* 📜 Chat List - Scroll of Spirits */
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Halloween scrollbar for chat list */
+.chat-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+  background: rgba(10, 6, 18, 0.8);
+  border-left: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B5CF6 0%, #6D28D9 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(10, 6, 18, 0.5);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #A78BFA 0%, #8B5CF6 100%);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
+}
+
+.chat-list-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #A78BFA;
+  font-size: 0.9rem;
+  font-family: 'Eater', cursive;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+  animation: emptyPulse 3s infinite;
+}
+
+.chat-list-empty::before {
+  content: '👻';
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  animation: floatGhost 3s infinite;
+}
+
+@keyframes floatGhost {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes emptyPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* 💀 Chat Item - Spirit Conversation */
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 22px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  background: transparent;
+}
+
+.chat-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    #8B5CF6 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chat-item:hover {
+  background: linear-gradient(90deg, 
+    rgba(139, 92, 246, 0.15) 0%,
+    transparent 100%
+  );
+  border-bottom-color: rgba(139, 92, 246, 0.4);
+}
+
+.chat-item:hover::before {
+  opacity: 1;
+}
+
+.chat-item-clickable {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  cursor: pointer;
+}
+
+/* 👻 Chat Avatar - Spirit Icon */
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  background: rgba(10, 6, 18, 0.8);
+  box-shadow: 
+    0 0 15px rgba(139, 92, 246, 0.5),
+    inset 0 0 10px rgba(139, 92, 246, 0.2);
+  filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));
+  padding: 2px;
+  transition: all 0.3s ease;
+}
+
+.chat-item:hover .chat-avatar {
+  border-color: #8B5CF6;
+  box-shadow: 
+    0 0 25px rgba(139, 92, 246, 0.8),
+    inset 0 0 15px rgba(139, 92, 246, 0.3);
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* 📝 Chat Text - Spirit Details */
+.chat-text { 
+  display: flex; 
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.chat-name { 
+  font-size: 0.95rem; 
+  font-weight: 600;
+  font-family: 'Creepster', cursive;
+  letter-spacing: 1px;
+  color: #C4B5FD;
+  text-shadow: 0 0 10px rgba(196, 181, 253, 0.5);
+  transition: all 0.3s ease;
+}
+
+.chat-item:hover .chat-name {
+  color: #E0E7FF;
+  text-shadow: 0 0 15px rgba(224, 231, 255, 0.7);
+}
+
+.chat-preview { 
+  font-size: 0.78rem; 
+  color: #A78BFA;
+  font-family: 'Eater', cursive;
+  opacity: 0.8;
+}
+
+/* 🔥 Delete Button - Banish Spirit */
+.chat-delete {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 38, 0.2) 0%,
+    rgba(124, 45, 18, 0.2) 100%
+  );
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  color: #FCA5A5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+  flex-shrink: 0;
+  opacity: 0;
+}
+
+.chat-item:hover .chat-delete {
+  opacity: 1;
+}
+
+.chat-delete:hover {
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 38, 0.4) 0%,
+    rgba(124, 45, 18, 0.4) 100%
+  );
+  border-color: #DC2626;
+  color: #FEE2E2;
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 
+    0 0 20px rgba(220, 38, 38, 0.6),
+    inset 0 0 10px rgba(220, 38, 38, 0.3);
+}
+
+.chat-delete:active {
+  transform: scale(0.95) rotate(0deg);
+}
+
+/* Sidebar Close Button (Mobile) */
+.sidebar-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface-active);
+  border: 1px solid var(--border-primary);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-close-btn:hover {
+  background: var(--error-bg);
+  border-color: var(--error-border);
+  color: var(--error-text);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}

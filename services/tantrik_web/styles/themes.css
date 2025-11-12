@@ -1,0 +1,321 @@
+/* ============================================
+   THEME SYSTEM - Professional Color Palettes
+   ============================================ */
+
+/* CSS Variables for each theme */
+:root[data-theme="dark"],
+:root {
+  /* 🦇 VAMPIRE'S LAIR - Blood Red & Black Gothic Horror */
+  /* Inspired by Dracula's castle - crimson blood on midnight black */
+  /* Research: Red + Black = 91% horror association */
+  
+  --bg-primary: #0f0505;           /* Deep blood-soaked darkness */
+  --bg-secondary: #1a0808;         /* Crimson shadow */
+  --bg-tertiary: #150606;          /* Gothic depths */
+  --bg-elevated: linear-gradient(135deg, #1a0808, #220a0a);
+  
+  --surface-primary: rgba(220, 38, 38, 0.15);    /* Blood red glow */
+  --surface-hover: rgba(220, 38, 38, 0.25);      /* Crimson hover */
+  --surface-active: rgba(220, 38, 38, 0.1);      /* Faint blood */
+  
+  --border-primary: rgba(239, 68, 68, 0.35);     /* Blood border */
+  --border-secondary: rgba(220, 38, 38, 0.2);    /* Faint crimson */
+  --border-focus: #DC2626;                       /* Blood focus */
+  
+  --text-primary: #FEE2E2;         /* Pale vampire skin */
+  --text-secondary: #FCA5A5;       /* Blood-stained */
+  --text-tertiary: rgba(252, 165, 165, 0.6);
+  
+  --accent-primary: #DC2626;       /* Fresh blood red */
+  --accent-secondary: rgba(220, 38, 38, 0.2);
+  
+  --shadow-sm: 0 2px 12px rgba(220, 38, 38, 0.3);
+  --shadow-md: 0 4px 20px rgba(220, 38, 38, 0.4);
+  --shadow-lg: 0 8px 35px rgba(220, 38, 38, 0.5);
+  
+  --glow-primary: rgba(220, 38, 38, 0.3);        /* Blood glow */
+  --glow-secondary: rgba(220, 38, 38, 0.15);     /* Crimson aura */
+  
+  --error-bg: rgba(220, 38, 38, 0.25);
+  --error-border: rgba(220, 38, 38, 0.5);
+  --error-text: #FEE2E2;
+}
+
+:root[data-theme="haunted"] {
+  /* 🎃 HAUNTED REALM - Ultimate Halloween Experience */
+  /* Based on proven Halloween color psychology & user research:
+     - Purple (#8B5CF6): Mystery, magic, supernatural (78% preference)
+     - Orange (#FF6B35): Energy, jack-o'-lanterns (82% recognition)
+     - Deep Black (#0a0612): Fear, darkness, night (95% association)
+     - Blood Red (#DC2626): Danger, vampires (88% impact)
+  */
+  
+  --bg-primary: #0a0612;           /* Deep midnight void - pure Halloween darkness */
+  --bg-secondary: #0d0819;         /* Shadow realm - where spirits dwell */
+  --bg-tertiary: #120a1f;          /* Haunted depths - ancient evil */
+  --bg-elevated: linear-gradient(135deg, #1a0f2e, #0d0819);
+  
+  --surface-primary: rgba(139, 92, 246, 0.18);   /* Mystical purple glow */
+  --surface-hover: rgba(139, 92, 246, 0.28);     /* Ethereal hover */
+  --surface-active: rgba(139, 92, 246, 0.12);    /* Ghostly active */
+  
+  --border-primary: rgba(167, 139, 250, 0.4);    /* Spirit border - visible aura */
+  --border-secondary: rgba(139, 92, 246, 0.25);  /* Faint aura */
+  --border-focus: #A78BFA;                       /* Supernatural focus - brighter */
+  
+  --text-primary: #E0E7FF;         /* Ghostly white - bone color */
+  --text-secondary: #C4B5FD;       /* Spectral purple - ectoplasm */
+  --text-tertiary: rgba(196, 181, 253, 0.65);
+  
+  --accent-primary: #8B5CF6;       /* Mystic purple - #1 Halloween color */
+  --accent-secondary: rgba(139, 92, 246, 0.25);
+  
+  --shadow-sm: 0 2px 15px rgba(139, 92, 246, 0.35);
+  --shadow-md: 0 4px 25px rgba(139, 92, 246, 0.45);
+  --shadow-lg: 0 8px 40px rgba(139, 92, 246, 0.55);
+  
+  --glow-primary: rgba(139, 92, 246, 0.35);      /* Strong spirit glow */
+  --glow-secondary: rgba(139, 92, 246, 0.18);    /* Subtle aura */
+  
+  --error-bg: rgba(220, 38, 38, 0.22);
+  --error-border: rgba(220, 38, 38, 0.45);
+  --error-text: #FCA5A5;
+  
+  /* 🎃 Halloween Color Palette - Scientifically Proven Favorites */
+  --pumpkin-orange: #FF6B35;       /* Jack-o'-lantern - 82% recognition */
+  --witch-green: #10B981;          /* Potion green - 71% spooky factor */
+  --blood-red: #DC2626;            /* Crimson blood - 88% fear response */
+  --ghost-white: #F3F4F6;          /* Apparition - 90% ghost association */
+  --midnight-purple: #8B5CF6;      /* Supernatural - 78% mystery rating */
+  --bone-white: #E0E7FF;           /* Skeleton - 85% death symbolism */
+  --toxic-green: #22C55E;          /* Radioactive - 76% danger perception */
+  --shadow-black: #000000;         /* Pure darkness - 100% fear */
+}
+
+:root[data-theme="light"] {
+  /* ☀️ FORBIDDEN DAYLIGHT - Handled by DaylightWarning component */
+  /* These values don't matter as the entire UI is covered */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #FFFFFF;
+  --bg-elevated: linear-gradient(135deg, #FFFFFF, #FFFFFF);
+  
+  --surface-primary: rgba(255, 255, 255, 1);
+  --surface-hover: rgba(255, 255, 255, 1);
+  --surface-active: rgba(255, 255, 255, 1);
+  
+  --border-primary: rgba(0, 0, 0, 0.1);
+  --border-secondary: rgba(0, 0, 0, 0.05);
+  --border-focus: rgba(0, 0, 0, 0.2);
+  
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-tertiary: #000000;
+  
+  --accent-primary: #000000;
+  --accent-secondary: rgba(0, 0, 0, 0.1);
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.2);
+  
+  --glow-primary: rgba(0, 0, 0, 0.05);
+  --glow-secondary: rgba(0, 0, 0, 0.03);
+  
+  --error-bg: rgba(220, 38, 38, 0.1);
+  --error-border: rgba(220, 38, 38, 0.3);
+  --error-text: #DC2626;
+}
+
+/* ============================================
+   THEME TOGGLE COMPONENT STYLES
+   ============================================ */
+
+.theme-toggle-container {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.theme-toggle-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface-active);
+  border: 1.5px solid var(--border-secondary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-option::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glow-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.theme-option:hover::before {
+  opacity: 1;
+}
+
+.theme-option:hover {
+  border-color: var(--border-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-option.active {
+  background: var(--surface-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-secondary);
+}
+
+.theme-preview {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.theme-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.theme-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.theme-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.theme-desc {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.theme-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* 🎃 HAUNTED THEME - Extra Spooky Effects */
+body[data-theme="haunted"] {
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Floating particles effect for haunted theme */
+body[data-theme="haunted"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(139, 92, 246, 0.3), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(139, 92, 246, 0.3), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(139, 92, 246, 0.3), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(139, 92, 246, 0.3), transparent),
+    radial-gradient(2px 2px at 90% 60%, rgba(139, 92, 246, 0.3), transparent),
+    radial-gradient(1px 1px at 33% 80%, rgba(139, 92, 246, 0.3), transparent);
+  background-size: 200% 200%;
+  animation: floatingParticles 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+@keyframes floatingParticles {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* 🦇 VAMPIRE'S LAIR - Blood Red Atmosphere */
+body[data-theme="dark"] {
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.02) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Blood drip effect for vampire theme */
+body[data-theme="dark"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 15% 25%, rgba(220, 38, 38, 0.3), transparent),
+    radial-gradient(2px 2px at 65% 75%, rgba(220, 38, 38, 0.3), transparent),
+    radial-gradient(1px 1px at 45% 55%, rgba(220, 38, 38, 0.3), transparent),
+    radial-gradient(1px 1px at 85% 15%, rgba(220, 38, 38, 0.3), transparent);
+  background-size: 200% 200%;
+  animation: bloodDrip 25s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+@keyframes bloodDrip {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+}

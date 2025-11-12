@@ -1,0 +1,256 @@
+/* Message List - No Internal Scroll, Part of Page Flow */
+.messages {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  /* NO overflow - messages flow naturally in page */
+}
+
+/* Message Container */
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 85%;
+  width: fit-content;
+}
+
+/* First message (greeting) should be wider */
+.message:first-child {
+  max-width: 95%;
+}
+
+.message.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  flex-direction: row;
+}
+
+/* Message Avatar */
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--border-primary);
+  background: var(--surface-primary);
+  box-shadow: var(--shadow-sm), 0 0 10px var(--glow-primary);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* AI Avatar (Logo) */
+.message-avatar.ai-avatar {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.3));
+  padding: 2px;
+}
+
+/* Message Bubble */
+.bubble {
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-sm), inset 0 0 8px var(--glow-secondary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* User bubble (right) */
+.message.user .bubble {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* AI / Tantrik bubble (left) */
+.message.assistant .bubble {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-color: var(--border-secondary);
+}
+
+/* Markdown styling inside bubbles */
+.bubble p {
+  margin: 0 0 0.75em 0;
+}
+
+.bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.bubble strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.bubble em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.bubble ul, .bubble ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.bubble li {
+  margin: 0.25em 0;
+}
+
+.bubble code {
+  background: var(--surface-primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.bubble pre {
+  background: var(--bg-secondary);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.75em 0;
+}
+
+.bubble pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Image styling inside bubbles */
+.bubble img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 12px 0;
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+.bubble img:first-child {
+  margin-top: 0;
+}
+
+.bubble img:last-child {
+  margin-bottom: 0;
+}
+
+/* Typing Indicator */
+.typing-bubble {
+  display: flex;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  animation: typingBlink 1.1s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { 
+  animation-delay: 0.15s; 
+}
+
+.typing-dot:nth-child(3) { 
+  animation-delay: 0.3s; 
+}
+
+@keyframes typingBlink {
+  0% { opacity: .2; transform: translateY(0px); }
+  50% { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: .2; transform: translateY(0px); }
+}
+
+/* 👻 HALLOWEEN HORROR EFFECTS */
+
+/* Haunted greeting message bubble */
+.bubble.horror-greeting-glow {
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.15) 0%, 
+    rgba(16, 24, 48, 0.95) 50%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.2),
+    inset 0 0 20px rgba(139, 92, 246, 0.1);
+  position: relative;
+  overflow: visible !important;
+  padding: 20px 24px;
+  line-height: 1.8;
+  word-wrap: break-word;
+  white-space: normal;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Ghostly particles floating around greeting */
+.bubble.horror-greeting-glow::after {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.2em;
+  animation: floatParticle 3s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+.bubble.horror-greeting-glow::before {
+  content: '🕯️';
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  font-size: 1.2em;
+  animation: floatParticle 3s infinite ease-in-out reverse;
+  opacity: 0.7;
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+/* Enhanced AI avatar for horror effect */
+.message.assistant .message-avatar.ai-avatar {
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+  animation: ghostlyPulse 3s infinite;
+}
+
+@keyframes ghostlyPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8));
+    transform: scale(1.05);
+  }
+}
+
+/* Spooky text glow for emojis in messages */
+.bubble.horror-greeting-glow {
+  font-size: 1rem;
+  line-height: 1.6;
+}
