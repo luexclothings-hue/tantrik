@@ -1,0 +1,18 @@
+# OpenAI Python client
+openai==1.54.4
+
+# httpx version compatible with openai 1.54.4
+httpx<0.28.0
+
+# Flask and helpers
+flask==3.1.0
+flask-cors==5.0.0
+
+# Environment variables
+python-dotenv==1.0.1
+
+# Production server
+gunicorn==23.0.0
+
+# For tests or small HTTP requests
+requests==2.32.3
