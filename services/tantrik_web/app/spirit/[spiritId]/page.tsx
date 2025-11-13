@@ -19,6 +19,13 @@ export default function SpiritChatPage() {
   const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
+    // Import sound manager dynamically
+    import('@/lib/soundManager').then(({ getSoundManager }) => {
+      const soundManager = getSoundManager();
+      // Play spirit-specific ambience
+      soundManager.playSpiritAmbience(spiritId);
+    });
+
     // Show Tantrik summoning animation
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -66,6 +73,12 @@ export default function SpiritChatPage() {
         if (!streamState.hasAddedMessage) {
           // First chunk - add both user message and assistant message
           streamState.hasAddedMessage = true;
+          
+          // Play message receive sound on first chunk
+          import('@/lib/soundManager').then(({ getSoundManager }) => {
+            getSoundManager().play('message-receive', 0.3);
+          });
+          
           setMessages([...currentMessages, { role: "assistant", content: streamState.content }]);
         } else {
           // Update the assistant message (last one)

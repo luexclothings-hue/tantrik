@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import { useSession } from "@/context/SessionContext";
 import { sendMessage } from "@/lib/tantrikApi";
 import Sidebar from "@/components/Sidebar";
+import SoundToggle from "@/components/SoundToggle";
 import ReactMarkdown from "react-markdown";
 import HorrorTyping from "@/components/HorrorTyping";
 import { getRandomHorrorGreeting } from "@/lib/horrorGreetings";
 import SpiritSelector from "@/components/SpiritSelector";
+import { useSounds } from "@/hooks/useSounds";
 
 export default function Page() {
   const { sessionId, userId, startNewSession } = useSession();
+  const sounds = useSounds();
   const [messages, setMessages] = useState<
     { role: "user" | "assistant"; content: string }[]
   >([]);
@@ -21,8 +24,23 @@ export default function Page() {
   const [selectedSpirit, setSelectedSpirit] = useState<string | null>(null);
   const [showSpiritSelector, setShowSpiritSelector] = useState(true);
 
+  // Enable sounds on first interaction
+  useEffect(() => {
+    const enableSounds = () => {
+      sounds.playBackgroundAmbience();
+    };
+    
+    // Try to start sounds on any click
+    document.addEventListener('click', enableSounds, { once: true });
+    
+    return () => {
+      document.removeEventListener('click', enableSounds);
+    };
+  }, []);
+
   useEffect(() => {
     if (!sessionId) return;
+    
     setIsGreeting(true);
     setShowSpiritSelector(true);
     setSelectedSpirit(null);
@@ -32,9 +50,18 @@ export default function Page() {
         content: getRandomHorrorGreeting(),
       },
     ]);
+
+    // Delay sound slightly to ensure sound manager is ready
+    setTimeout(() => {
+      sounds.playBackgroundAmbience();
+      sounds.playSound('greeting-entrance', 0.4);
+    }, 100);
   }, [sessionId]);
 
   const handleSpiritSelect = (spiritId: string, spiritName: string) => {
+    // Play spirit-specific selection sound
+    sounds.playSound(`${spiritId}-select`, 0.5);
+    
     setSelectedSpirit(spiritId);
     setShowSpiritSelector(false);
     setIsGreeting(false);
@@ -58,6 +85,9 @@ export default function Page() {
     e.preventDefault();
     if (!input.trim() || !sessionId) return;
 
+    // Play message send sound
+    sounds.playSound('message-send', 0.3);
+
     const userMsg = { role: "user" as const, content: input };
     setMessages((m) => [...m, userMsg]);
     const messageText = input;
@@ -69,6 +99,8 @@ export default function Page() {
       sessionId,
       text: messageText,
       onAgentResponse: (response: string) => {
+        // Play message receive sound
+        sounds.playSound('message-receive', 0.3);
         setMessages((msgs) => [...msgs, { role: "assistant", content: response }]);
       },
     });
@@ -86,6 +118,7 @@ export default function Page() {
       )}
       
       <Sidebar isOpen={sidebarOpen} />
+      <SoundToggle />
 
       <div className="chat-page">
         {/* Header */}

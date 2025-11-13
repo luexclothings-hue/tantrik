@@ -1,10 +1,24 @@
 "use client";
 
+import { useEffect } from "react";
+import { useSounds } from "@/hooks/useSounds";
+
 interface TantrikLoadingProps {
   spiritName: string;
 }
 
 export default function TantrikLoading({ spiritName }: TantrikLoadingProps) {
+  const sounds = useSounds();
+
+  useEffect(() => {
+    // Play summoning ritual sound
+    sounds.playSound('summoning-ritual', 0.5, true);
+    sounds.playSound('portal-open', 0.4);
+
+    return () => {
+      sounds.stopSound('summoning-ritual');
+    };
+  }, []);
   const spiritNames: Record<string, string> = {
     dracula: "Count Dracula",
     reaper: "The Grim Reaper",

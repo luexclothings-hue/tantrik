@@ -1,4 +1,0 @@
-google-adk
-requests
-google-cloud-aiplatform
-google-cloud-storage
