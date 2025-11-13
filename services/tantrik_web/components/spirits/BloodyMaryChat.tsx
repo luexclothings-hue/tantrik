@@ -51,7 +51,7 @@ export default function BloodyMaryChat({
         {/* Mary Portrait */}
         <div className="mary-portrait">
           <div className="mirror-frame">
-            <div className="mary-emoji">👻</div>
+            <div className="mary-emoji">👰‍♀️</div>
             <div className="blood-tears">💧💧</div>
             <div className="mirror-glow"></div>
             <div className="hand-prints">

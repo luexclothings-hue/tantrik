@@ -3,10 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "@/context/SessionContext";
 import { sendMessage } from "@/lib/tantrikApi";
-import { exportChatToPDF } from "@/lib/pdfExport";
-import { saveChat, getSavedChats, deleteChat } from "@/lib/chatStorage";
 import Sidebar from "@/components/Sidebar";
-import SaveChatModal from "@/components/SaveChatModal";
 import ReactMarkdown from "react-markdown";
 import HorrorTyping from "@/components/HorrorTyping";
 import { getRandomHorrorGreeting } from "@/lib/horrorGreetings";
@@ -19,18 +16,10 @@ export default function Page() {
   >([]);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
-  const [showSaveModal, setShowSaveModal] = useState(false);
-  const [savedChats, setSavedChats] = useState<any[]>([]);
-  const [viewingHistory, setViewingHistory] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isGreeting, setIsGreeting] = useState(false);
   const [selectedSpirit, setSelectedSpirit] = useState<string | null>(null);
   const [showSpiritSelector, setShowSpiritSelector] = useState(true);
-
-  useEffect(() => {
-    // Load saved chats on client side only
-    setSavedChats(getSavedChats());
-  }, []);
 
   useEffect(() => {
     if (!sessionId) return;
@@ -63,41 +52,7 @@ export default function Page() {
     }]);
   };
 
-  const handleSaveChat = (name: string) => {
-    saveChat(name, messages);
-    setSavedChats(getSavedChats());
-  };
 
-  const handleLoadChat = (chat: any) => {
-    setMessages(chat.messages);
-    setViewingHistory(chat.name);
-    setSidebarOpen(false);
-  };
-
-  const handleNewChat = () => {
-    setViewingHistory(null);
-    setIsGreeting(true);
-    setShowSpiritSelector(true);
-    setSelectedSpirit(null);
-    setMessages([
-      {
-        role: "assistant",
-        content: getRandomHorrorGreeting(),
-      },
-    ]);
-    setSidebarOpen(false);
-    
-    // Create new session with backend
-    startNewSession();
-  };
-
-  const handleDeleteChat = (id: string) => {
-    deleteChat(id);
-    setSavedChats(getSavedChats());
-    if (viewingHistory) {
-      handleNewChat();
-    }
-  };
 
   const send = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -130,13 +85,7 @@ export default function Page() {
         />
       )}
       
-      <Sidebar
-        savedChats={savedChats}
-        onChatSelect={handleLoadChat}
-        onNewChat={handleNewChat}
-        onDeleteChat={handleDeleteChat}
-        isOpen={sidebarOpen}
-      />
+      <Sidebar isOpen={sidebarOpen} />
 
       <div className="chat-page">
         {/* Header */}
@@ -164,71 +113,16 @@ export default function Page() {
           <img src="/tantrik-logo.svg" className="header-logo" alt="Tantrik Logo" />
           <div className="header-info">
             <div className="header-name">
-              {viewingHistory || (
-                <>
-                  Tantrik
-                  <span className="beta-tag">HALLOWEEN</span>
-                </>
-              )}
+              Tantrik
+              <span className="beta-tag">HALLOWEEN</span>
             </div>
             <div className="header-status">
-              {viewingHistory ? "Saved Séance" : "Gateway to the Spirit Realm"}
+              Gateway to the Spirit Realm
             </div>
-          </div>
-          <div className="header-actions">
-            {!viewingHistory && (
-              <button
-                className="header-btn"
-                onClick={() => setShowSaveModal(true)}
-                title="Save Chat"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                  <polyline points="17 21 17 13 7 13 7 21" />
-                  <polyline points="7 3 7 8 15 8" />
-                </svg>
-              </button>
-            )}
-            <button
-              className="header-btn"
-              onClick={async () => await exportChatToPDF(messages)}
-              title="Download PDF"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-            </button>
           </div>
         </div>
 
-        {showSaveModal && (
-          <SaveChatModal
-            onSave={handleSaveChat}
-            onClose={() => setShowSaveModal(false)}
-          />
-        )}
-
-      <div className="messages">
+        <div className="messages">
         {messages.map((msg, i) => (
           <div key={i} className={`message ${msg.role}`}>
             {msg.role === "assistant" && (
@@ -275,14 +169,14 @@ export default function Page() {
         )}
       </div>
 
-        {!viewingHistory && showSpiritSelector && (
+        {showSpiritSelector && (
           <SpiritSelector 
             onSelectSpirit={handleSpiritSelect}
             disabled={isSending}
           />
         )}
 
-        {!viewingHistory && !showSpiritSelector && selectedSpirit && (
+        {!showSpiritSelector && selectedSpirit && (
           <form className="input-bar" onSubmit={send}>
             <input
               type="text"

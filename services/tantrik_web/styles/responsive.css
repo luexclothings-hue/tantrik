@@ -41,12 +41,11 @@
     display: flex;
   }
 
-  /* Chat Page - Fix height on mobile */
+  /* Chat Page - Allow natural height on mobile */
   .chat-page {
-    height: 100vh;
-    height: 100dvh; /* Use dynamic viewport height for mobile browsers */
-    max-height: 100vh;
-    max-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+  overflow-y: auto;
   }
 
   /* Chat Header */
@@ -86,14 +85,11 @@
     height: 18px;
   }
 
-  /* Messages - Ensure proper scrolling */
+  /* Messages - Natural page flow, no internal scroll */
   .messages {
     padding: 16px 12px;
     gap: 14px;
-    flex: 1;
-    overflow-y: auto;
     overflow-x: hidden;
-    min-height: 0; /* Important for flex scrolling */
   }
 
   .message {

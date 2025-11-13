@@ -28,3 +28,5 @@
 
 /* Responsive breakpoints */
 @import '../styles/responsive.css';
+@import '../styles/responsive-master.css';
+@import '../styles/home-responsive.css';

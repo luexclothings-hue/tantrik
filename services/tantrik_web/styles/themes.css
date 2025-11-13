@@ -319,3 +319,56 @@ body[data-theme="dark"]::before {
   0% { background-position: 0% 0%; }
   100% { background-position: 0% 100%; }
 }
+
+
+/* 🎨 THEME-BASED SCROLLBARS */
+
+/* Default scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}
+
+/* Dark Theme (Vampire Red) Scrollbar */
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #DC2626 0%, #991B1B 100%);
+  border: 2px solid rgba(10, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.8);
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: rgba(10, 0, 0, 0.8);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+/* Haunted Theme (Purple/Blue) Scrollbar */
+:root[data-theme="haunted"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B5CF6 0%, #6D28D9 100%);
+  border: 2px solid rgba(10, 6, 18, 0.5);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+}
+
+:root[data-theme="haunted"] ::-webkit-scrollbar-track {
+  background: rgba(10, 6, 18, 0.8);
+  border-left: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Show scrollbar on mobile for better UX */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+  }
+}
