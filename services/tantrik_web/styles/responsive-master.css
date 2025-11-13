@@ -1,0 +1,266 @@
+/* 🎃 TANTRIK - MASTER RESPONSIVE STYLES 🎃 */
+/* Making Halloween terrifying on ALL devices! */
+
+/* ============================================
+   BREAKPOINTS:
+   - Mobile: < 640px
+   - Tablet: 640px - 1024px  
+   - Desktop: > 1024px
+   ============================================ */
+
+/* ========================================
+   TABLET & BELOW (< 1024px)
+   ======================================== */
+@media (max-width: 1024px) {
+  /* All Messages - Remove left padding */
+  .dracula-messages,
+  .reaper-messages,
+  .mary-messages {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* All Input Forms - Remove left padding */
+  .dracula-input-form,
+  .reaper-input-form,
+  .mary-input-form {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Chat Containers */
+  .dracula-chat-container,
+  .reaper-chat-container,
+  .mary-chat-container {
+    padding: 20px !important;
+  }
+}
+
+/* ========================================
+   MOBILE (< 768px)
+   ======================================== */
+@media (max-width: 768px) {
+  /* Portrait Frames - Smaller */
+  .portrait-frame,
+  .reaper-frame,
+  .mirror-frame {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  
+  /* Portrait Emojis - Smaller */
+  .dracula-emoji,
+  .reaper-emoji,
+  .mary-emoji {
+    font-size: 5rem !important;
+  }
+  
+  /* Portrait Names */
+  .dracula-name,
+  .reaper-name,
+  .mary-name {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Portrait Titles */
+  .dracula-title,
+  .reaper-title,
+  .mary-title {
+    font-size: 0.8rem !important;
+  }
+  
+  /* Input Containers - Stack vertically */
+  .coffin-input-container,
+  .tombstone-input,
+  .mirror-input {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  /* Send Buttons - Full width */
+  .dracula-send-btn,
+  .reaper-send-btn,
+  .mary-send-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  /* Run Away / Escape Buttons - Smaller */
+  .run-away-btn,
+  .escape-btn,
+  .flee-btn {
+    top: 15px !important;
+    right: 15px !important;
+    padding: 10px 15px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .run-icon,
+  .escape-icon,
+  .flee-icon {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Message Bubbles - Smaller max-width */
+  .speech-bubble,
+  .dracula-bubble,
+  .user-bubble,
+  .death-bubble,
+  .mortal-bubble,
+  .ghost-bubble,
+  .victim-bubble {
+    max-width: 90% !important;
+    padding: 15px 18px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE (< 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  /* Portrait Frames - Even smaller */
+  .portrait-frame,
+  .reaper-frame,
+  .mirror-frame {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+  /* Portrait Emojis */
+  .dracula-emoji,
+  .reaper-emoji,
+  .mary-emoji {
+    font-size: 4rem !important;
+  }
+  
+  /* Messages - More padding */
+  .dracula-messages,
+  .reaper-messages,
+  .mary-messages {
+    padding: 15px 10px !important;
+    gap: 15px !important;
+  }
+  
+  /* Input Forms */
+  .dracula-input-form,
+  .reaper-input-form,
+  .mary-input-form {
+    padding: 0 10px 15px 10px !important;
+  }
+  
+  /* Input Fields - Smaller padding */
+  .dracula-input,
+  .reaper-input,
+  .mary-input {
+    padding: 12px 15px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Send Buttons - Smaller */
+  .dracula-send-btn,
+  .reaper-send-btn,
+  .mary-send-btn {
+    padding: 12px 20px !important;
+    font-size: 1rem !important;
+  }
+  
+  /* Run Away Buttons - Even smaller */
+  .run-away-btn,
+  .escape-btn,
+  .flee-btn {
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .run-text,
+  .escape-text,
+  .flee-text {
+    display: none !important;
+  }
+  
+  /* Message Bubbles - Full width */
+  .speech-bubble,
+  .dracula-bubble,
+  .user-bubble,
+  .death-bubble,
+  .mortal-bubble,
+  .ghost-bubble,
+  .victim-bubble {
+    max-width: 95% !important;
+    padding: 12px 15px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Decorative Elements - Hide some on very small screens */
+  .blood-drops,
+  .coffin-decorations,
+  .chains,
+  .blood-stains,
+  .watching-eyes,
+  .floating-souls,
+  .crows,
+  .floating-candles-mary,
+  .ceiling-blood {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   LANDSCAPE MOBILE (< 768px height)
+   ======================================== */
+@media (max-height: 768px) and (orientation: landscape) {
+  /* Portrait - Smaller in landscape */
+  .dracula-portrait,
+  .reaper-portrait,
+  .mary-portrait {
+    margin: 10px auto !important;
+  }
+  
+  .portrait-frame,
+  .reaper-frame,
+  .mirror-frame {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  .dracula-emoji,
+  .reaper-emoji,
+  .mary-emoji {
+    font-size: 3.5rem !important;
+  }
+  
+  /* Messages - Less vertical padding */
+  .dracula-messages,
+  .reaper-messages,
+  .mary-messages {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+/* ========================================
+   VERY LARGE SCREENS (> 1920px)
+   ======================================== */
+@media (min-width: 1920px) {
+  /* Scale up slightly for large monitors */
+  .dracula-chat-container,
+  .reaper-chat-container,
+  .mary-chat-container {
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+  }
+  
+  .portrait-frame,
+  .reaper-frame,
+  .mirror-frame {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  
+  .dracula-emoji,
+  .reaper-emoji,
+  .mary-emoji {
+    font-size: 9rem !important;
+  }
+}

@@ -23,7 +23,7 @@ function SessionGate({ children }: { children: React.ReactNode }) {
           </button>
         </div>
       )}
-      <div style={{ display: "flex", height: "100vh" }}>
+      <div className="app-container">
         {children}
         {loading && (
           <div className="chat-loading-overlay">

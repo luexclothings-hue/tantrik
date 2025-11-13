@@ -39,7 +39,7 @@ const SPIRITS: Spirit[] = [
     name: "Bloody Mary",
     title: "The Mirror Ghost",
     description: "Vengeful spirit trapped between mirrors and madness",
-    emoji: "👻",
+    emoji: "👰‍♀️",
     color: "#7C2D12",
     shadowColor: "124, 45, 18",
     backstory: "Say my name three times... I dare you. I haunt the reflections, waiting to drag you into eternal darkness..."
@@ -56,11 +56,22 @@ export default function SpiritSelector({ onSelectSpirit, disabled }: SpiritSelec
   const [selectedSpirit, setSelectedSpirit] = useState<string | null>(null);
 
   const handleSelect = (spirit: Spirit) => {
-    if (disabled) return;
+    if (disabled) {
+      console.log("Spirit selector is disabled");
+      return;
+    }
+    
+    if (selectedSpirit) {
+      console.log("Already selecting a spirit:", selectedSpirit);
+      return;
+    }
+    
+    console.log("Spirit selected:", spirit.id, spirit.name);
     setSelectedSpirit(spirit.id);
     
     // Navigate to spirit chat page
     setTimeout(() => {
+      console.log("Navigating to:", `/spirit/${spirit.id}`);
       window.location.href = `/spirit/${spirit.id}`;
     }, 800);
   };
@@ -81,7 +92,7 @@ export default function SpiritSelector({ onSelectSpirit, disabled }: SpiritSelec
           <button
             key={spirit.id}
             className={`spirit-card ${hoveredSpirit === spirit.id ? 'hovered' : ''} ${selectedSpirit === spirit.id ? 'selected' : ''}`}
-            onMouseEnter={() => setHoveredSpirit(spirit.id)}
+            onMouseEnter={() => !disabled && !selectedSpirit && setHoveredSpirit(spirit.id)}
             onMouseLeave={() => setHoveredSpirit(null)}
             onClick={() => handleSelect(spirit)}
             disabled={disabled || selectedSpirit !== null}
@@ -89,6 +100,7 @@ export default function SpiritSelector({ onSelectSpirit, disabled }: SpiritSelec
               '--spirit-color': spirit.color,
               '--spirit-shadow': spirit.shadowColor,
             } as React.CSSProperties}
+            aria-label={`Select ${spirit.name}`}
           >
             <div className="spirit-card-glow"></div>
             
