@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { useSounds } from "@/hooks/useSounds";
+import SoundToggle from "@/components/SoundToggle";
 
 interface ReaperChatProps {
   messages: { role: "user" | "assistant"; content: string }[];
@@ -21,10 +23,37 @@ export default function ReaperChat({
   isSending
 }: ReaperChatProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const sounds = useSounds();
+
+  // Play Reaper ambience on mount
+  useEffect(() => {
+    // Play entrance sound first
+    sounds.playSound('death-bell', 0.6);
+    
+    // Then start ambience after a short delay
+    setTimeout(() => {
+      sounds.playSpiritAmbience('reaper');
+    }, 500);
+    
+    // Play random spooky sounds periodically for atmosphere
+    const spookyInterval = setInterval(() => {
+      sounds.playRandomSpook();
+    }, 18000); // Every 18 seconds
+    
+    return () => {
+      sounds.stopSpiritAmbience();
+      clearInterval(spookyInterval);
+    };
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const handleSendWithSound = (e: React.FormEvent) => {
+    sounds.playSound('message-send', 0.3);
+    onSend(e);
+  };
 
   return (
     <div className="reaper-chat">
@@ -105,7 +134,7 @@ export default function ReaperChat({
         </div>
 
         {/* Input - Tombstone Style */}
-        <form className="reaper-input-form" onSubmit={onSend}>
+        <form className="reaper-input-form" onSubmit={handleSendWithSound}>
           <div className="tombstone-input">
             <div className="tombstone-top">R.I.P.</div>
             <input
@@ -141,6 +170,9 @@ export default function ReaperChat({
         <div className="crow">🦅</div>
         <div className="crow">🦅</div>
       </div>
+
+      {/* Sound Toggle */}
+      <SoundToggle />
     </div>
   );
 }

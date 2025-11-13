@@ -25,6 +25,7 @@
 
 /* Utilities */
 @import '../styles/animations.css';
+@import '../styles/sound-toggle.css';
 
 /* Responsive breakpoints */
 @import '../styles/responsive.css';

@@ -1,0 +1,199 @@
+/* Halloween Sound Toggle Button */
+.sound-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d1b1b 100%);
+  border: 2px solid #8B0000;
+  border-radius: 16px;
+  
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  box-shadow: 
+    0 4px 20px rgba(139, 0, 0, 0.4),
+    0 0 30px rgba(255, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  animation: pulseGlow 3s infinite;
+}
+
+.sound-toggle:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: #FF0000;
+  box-shadow: 
+    0 8px 30px rgba(139, 0, 0, 0.6),
+    0 0 50px rgba(255, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sound-toggle:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.sound-icon-container {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6));
+  animation: iconFloat 2s ease-in-out infinite;
+}
+
+.sound-ghost {
+  position: absolute;
+  font-size: 24px;
+  animation: ghostFloat 3s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.sound-waves {
+  position: absolute;
+  display: flex;
+  gap: 4px;
+  right: -8px;
+}
+
+.wave {
+  width: 3px;
+  height: 12px;
+  background: linear-gradient(to top, #FF0000, #FF6B6B);
+  border-radius: 2px;
+  animation: waveAnimation 1s ease-in-out infinite;
+}
+
+.wave:nth-child(1) {
+  animation-delay: 0s;
+  height: 8px;
+}
+
+.wave:nth-child(2) {
+  animation-delay: 0.2s;
+  height: 16px;
+}
+
+.wave:nth-child(3) {
+  animation-delay: 0.4s;
+  height: 12px;
+}
+
+.sound-label {
+  font-family: 'Creepster', cursive;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #FF6B6B;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+  font-weight: 700;
+}
+
+.sound-toggle.muted .sound-label {
+  color: #666;
+  text-shadow: none;
+}
+
+.sound-toggle.muted {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-color: #444;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: none;
+}
+
+.sound-toggle.muted:hover {
+  border-color: #666;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 20px rgba(139, 0, 0, 0.4),
+      0 0 30px rgba(255, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 4px 25px rgba(139, 0, 0, 0.6),
+      0 0 50px rgba(255, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes ghostFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(10px, -10px) rotate(10deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-10px, -15px) rotate(-10deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(5px, -8px) rotate(5deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes waveAnimation {
+  0%, 100% {
+    transform: scaleY(0.5);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sound-toggle {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 16px;
+  }
+
+  .sound-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sound-icon {
+    font-size: 28px;
+  }
+
+  .sound-label {
+    font-size: 0.65rem;
+  }
+}

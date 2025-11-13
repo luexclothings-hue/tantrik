@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { useSounds } from "@/hooks/useSounds";
+import SoundToggle from "@/components/SoundToggle";
 
 interface DraculaChatProps {
   messages: { role: "user" | "assistant"; content: string }[];
@@ -21,10 +23,37 @@ export default function DraculaChat({
   isSending
 }: DraculaChatProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const sounds = useSounds();
+
+  // Play Dracula ambience on mount
+  useEffect(() => {
+    // Play entrance sound first
+    sounds.playSound('vampire-laugh', 0.6);
+    
+    // Then start ambience after a short delay
+    setTimeout(() => {
+      sounds.playSpiritAmbience('dracula');
+    }, 500);
+    
+    // Play random spooky sounds periodically for atmosphere
+    const spookyInterval = setInterval(() => {
+      sounds.playRandomSpook();
+    }, 20000); // Every 20 seconds
+    
+    return () => {
+      sounds.stopSpiritAmbience();
+      clearInterval(spookyInterval);
+    };
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const handleSendWithSound = (e: React.FormEvent) => {
+    sounds.playSound('message-send', 0.3);
+    onSend(e);
+  };
 
   return (
     <div className="dracula-chat">
@@ -104,7 +133,7 @@ export default function DraculaChat({
         </div>
 
         {/* Input Area - Gothic Coffin Style */}
-        <form className="dracula-input-form" onSubmit={onSend}>
+        <form className="dracula-input-form" onSubmit={handleSendWithSound}>
           <div className="coffin-input-container">
             <div className="coffin-lid"></div>
             <input
@@ -161,6 +190,9 @@ export default function DraculaChat({
         <div className="eyes eyes-1">👁️👁️</div>
         <div className="eyes eyes-2">👁️👁️</div>
       </div>
+
+      {/* Sound Toggle */}
+      <SoundToggle />
     </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { useSounds } from "@/hooks/useSounds";
+import SoundToggle from "@/components/SoundToggle";
 
 interface BloodyMaryChatProps {
   messages: { role: "user" | "assistant"; content: string }[];
@@ -21,10 +23,37 @@ export default function BloodyMaryChat({
   isSending
 }: BloodyMaryChatProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const sounds = useSounds();
+
+  // Play Bloody Mary ambience on mount
+  useEffect(() => {
+    // Play entrance sound first
+    sounds.playSound('mirror-crack', 0.6);
+    
+    // Then start ambience after a short delay
+    setTimeout(() => {
+      sounds.playSpiritAmbience('bloody_mary');
+    }, 500);
+    
+    // Play random spooky sounds periodically for atmosphere
+    const spookyInterval = setInterval(() => {
+      sounds.playRandomSpook();
+    }, 15000); // Every 15 seconds
+    
+    return () => {
+      sounds.stopSpiritAmbience();
+      clearInterval(spookyInterval);
+    };
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const handleSendWithSound = (e: React.FormEvent) => {
+    sounds.playSound('message-send', 0.3);
+    onSend(e);
+  };
 
   return (
     <div className="mary-chat">
@@ -105,7 +134,7 @@ export default function BloodyMaryChat({
         </div>
 
         {/* Input - Mirror Frame Style */}
-        <form className="mary-input-form" onSubmit={onSend}>
+        <form className="mary-input-form" onSubmit={handleSendWithSound}>
           <div className="mirror-input">
             <div className="mirror-border"></div>
             <input
@@ -142,6 +171,9 @@ export default function BloodyMaryChat({
         <div className="blood-drop-ceiling"></div>
         <div className="blood-drop-ceiling"></div>
       </div>
+
+      {/* Sound Toggle */}
+      <SoundToggle />
     </div>
   );
 }

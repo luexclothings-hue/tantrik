@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSounds } from "@/hooks/useSounds";
 
 interface Spirit {
   id: string;
@@ -52,8 +53,16 @@ interface SpiritSelectorProps {
 }
 
 export default function SpiritSelector({ onSelectSpirit, disabled }: SpiritSelectorProps) {
+  const sounds = useSounds();
   const [hoveredSpirit, setHoveredSpirit] = useState<string | null>(null);
   const [selectedSpirit, setSelectedSpirit] = useState<string | null>(null);
+
+  const handleHover = (spiritId: string) => {
+    if (!disabled && !selectedSpirit) {
+      sounds.playSound('card-hover', 0.2);
+      setHoveredSpirit(spiritId);
+    }
+  };
 
   const handleSelect = (spirit: Spirit) => {
     if (disabled) {
@@ -67,13 +76,22 @@ export default function SpiritSelector({ onSelectSpirit, disabled }: SpiritSelec
     }
     
     console.log("Spirit selected:", spirit.id, spirit.name);
+    
+    // Play spirit-specific selection sound first
+    sounds.playSound(`${spirit.id}-select`, 0.6);
+    
+    // Then play summoning bell after a short delay
+    setTimeout(() => {
+      sounds.playSound('spirit-select', 0.5);
+    }, 400);
+    
     setSelectedSpirit(spirit.id);
     
-    // Navigate to spirit chat page
+    // Navigate to spirit chat page - give sounds time to play
     setTimeout(() => {
       console.log("Navigating to:", `/spirit/${spirit.id}`);
       window.location.href = `/spirit/${spirit.id}`;
-    }, 800);
+    }, 2000); // Increased delay to let sounds finish
   };
 
   return (
@@ -92,7 +110,7 @@ export default function SpiritSelector({ onSelectSpirit, disabled }: SpiritSelec
           <button
             key={spirit.id}
             className={`spirit-card ${hoveredSpirit === spirit.id ? 'hovered' : ''} ${selectedSpirit === spirit.id ? 'selected' : ''}`}
-            onMouseEnter={() => !disabled && !selectedSpirit && setHoveredSpirit(spirit.id)}
+            onMouseEnter={() => handleHover(spirit.id)}
             onMouseLeave={() => setHoveredSpirit(null)}
             onClick={() => handleSelect(spirit)}
             disabled={disabled || selectedSpirit !== null}
